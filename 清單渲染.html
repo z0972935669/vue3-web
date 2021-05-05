@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="array-rendering">
+        <li v-for="item in items" :key="item.id">
+            {{ item.message }}
+        </li>
+    </ul>
+
+    <ul id="array-with-index">
+        <li v-for="(item, index) in items">
+            {{ parentMessage }} - {{ index }} - {{ item.message }}
+        </li>
+    </ul>
+
+    <ul id="v-for-object" class="demo">
+        <li v-for="(value, name, index) in myObject">
+            {{ index }}. {{ name }}: {{ value }}
+        </li>
+    </ul>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    items: [
+                        { message: 'Foo' },
+                        { message: 'Bar' }
+                    ]
+                }
+            },
+        }).mount('#array-rendering');
+
+        const app1 = Vue.createApp({
+            data() {
+                return {
+                    parentMessage: 'Parent',
+                    items: [
+                        { message: 'Foo' },
+                        { message: 'Bar' }
+                    ]
+                }
+            },
+        }).mount('#array-with-index');
+
+        const app2 = Vue.createApp({
+            data() {
+                return {
+                    myObject: {
+                        title: 'How to do lists in Vue',
+                        author: 'Jane Doe',
+                        publishedAt: '2021-04-10'
+                    }
+                }
+            },
+        }).mount('#v-for-object')
+    </script>
+</body>
+
+</html>
